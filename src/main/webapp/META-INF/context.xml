@@ -1,0 +1,10 @@
+<Context path="/CRUD">
+
+
+<Resource name="jdbc/conexion" auth="Container" type="javax.sql.DataSource" maxActive="15" maxIdle ="3" maxWait="5000"
+			username="root" password="0101"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/tiendaonline"></Resource>
+
+
+</Context>
