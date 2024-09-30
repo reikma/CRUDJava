@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nuevo producto</title>
+<title>Nuevo elemento</title>
 
 </head>
 <style>
@@ -70,31 +73,22 @@
     }
 </style>
 <body>
-<form action="ControladorProducto" method="get">
+<form action="Controlador" method="get">
 
-<input type="hidden" name="instruccion" value="actualizarBBDD">
-<input type="hidden" name="idProducto" value="${ProductoActualizar.id }">
-                <p>Ingrese los datos generales del producto  que desee modificar:</p>
+<input type="hidden" name="instruccion" value="insertarBBDD">
+<input type="hidden" name="nameTabla" value="${tabla }">
+
+				<h2>Nombre de la tabla: ${tabla }</h2>
+                <p>Ingrese los datos en los campos correspondientes para agregarlos a la DDBB:</p>
                     <table>
-                        
+                        <c:forEach var="campo" items="${campoFormulario }">
                         <tr>
                         
-                            <td class="nombre-t">Nombre del producto:</td>
-                            <td class="input-t"><input type="text" name="nombre" id="" value="${ProductoActualizar.nombre }"> </td>
+                            <td class="nombre-t">${campo }</td>
+                            <td class="input-t"><input type="text" name="${campo }"> </td>
                                        
                         </tr>
-                        <tr>
-                        
-                            <td class="nombre-t">Descripcion:</td>
-                            <td class="input-t"><input type="text" name="descripcion" id="" value="${ProductoActualizar.descripcion }"> </td>
-                                       
-                        </tr>
-                        <tr>
-                        
-                            <td class="nombre-t">Precio:</td>
-                            <td class="input-t"><input type="text" name="precio" id="" value="${ProductoActualizar.precio }"> </td>
-                                       
-                        </tr>
+                        </c:forEach>
                         
                         <tr>
                             <td></td>

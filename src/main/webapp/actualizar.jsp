@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nuevo producto</title>
+<title>Modificar elemento</title>
 
 </head>
 <style>
@@ -70,30 +72,27 @@
     }
 </style>
 <body>
-<form action="ControladorProducto" method="get">
+<form action="Controlador" method="get">
 
-<input type="hidden" name="instruccion" value="insertarBBDD">
-                <p>Ingrese los datos generales del nuevo usuario que desee registrar:</p>
-                    <table>
-                        
+<input type="hidden" name="instruccion" value="actualizarBBDD">
+<input type="hidden" name="idProducto" value="${VALORES.get(0) }">
+<input type="hidden" name="nameTabla" value="${tabla }">
+<input type="hidden" name="namePK" value="${CAMPOS.get(0) }">
+				
+				<h2>Nombre de la tabla: ${tabla }</h2>
+                <p>Ingrese los datos generales del elemento que desee modificar:</p>
+                
+                <table>
+                		<c:set var="i" value="0"/>
+                        <c:forEach var="campo" items="${CAMPOS }">
                         <tr>
                         
-                            <td class="nombre-t">Nombre del producto:</td>
-                            <td class="input-t"><input type="text" name="nombre" id=""> </td>
+                            <td class="nombre-t">${campo }</td>
+                            <td class="input-t"><input type="text" name="${campo }" value="${VALORES.get(i) }"> </td>
                                        
                         </tr>
-                        <tr>
-                        
-                            <td class="nombre-t">Descripcion:</td>
-                            <td class="input-t"><input type="text" name="descripcion" id=""> </td>
-                                       
-                        </tr>
-                        <tr>
-                        
-                            <td class="nombre-t">Precio:</td>
-                            <td class="input-t"><input type="text" name="precio" id=""> </td>
-                                       
-                        </tr>
+                        <c:set var="i" value="${ i+1}"/>
+                        </c:forEach>
                         
                         <tr>
                             <td></td>
@@ -103,7 +102,9 @@
                         </tr>
                     </table>
                     
-                </form>
+                    
+                    
+</form>
 
 </body>
 </html>
